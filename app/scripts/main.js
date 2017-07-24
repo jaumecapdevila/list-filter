@@ -1,1 +1,1 @@
-console.log('\'Allo \'Allo!');
+import ArraySerializer from './modules/serializer/serializer';

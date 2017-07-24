@@ -5,6 +5,10 @@ const browserSync = require('browser-sync').create();
 const del = require('del');
 const wiredep = require('wiredep').stream;
 const runSequence = require('run-sequence');
+const rollup = require('rollup-stream');
+const source = require('vinyl-source-stream');
+const buffer = require('vinyl-buffer');
+const babel = require('rollup-plugin-babel');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -20,26 +24,50 @@ gulp.task('styles', () => {
       precision: 10,
       includePaths: ['.']
     }).on('error', $.sass.logError))
-    .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
+    .pipe($.autoprefixer({ browsers: ['> 1%', 'last 2 versions', 'Firefox ESR'] }))
     .pipe($.if(dev, $.sourcemaps.write()))
     .pipe(gulp.dest('.tmp/styles'))
-    .pipe(reload({stream: true}));
+    .pipe(reload({ stream: true }));
 });
 
-gulp.task('scripts', () => {
-  return gulp.src('app/scripts/**/*.js')
-    .pipe($.plumber())
-    .pipe($.if(dev, $.sourcemaps.init()))
-    .pipe($.babel())
-    .pipe($.if(dev, $.sourcemaps.write('.')))
+gulp.task('scripts', function() {
+  return rollup({
+      entry: './app/scripts/main.js',
+      sourceMap: true,
+      plugins: [
+        babel({
+          presets: [
+            [
+              "es2015", {
+                "modules": false
+              }
+            ]
+          ],
+          babelrc: false,
+          exclude: 'node_modules/**'
+        })
+      ]
+    })
+    // point to the entry file.
+    .pipe(source('main.js', './app/scripts'))
+    // buffer the output. most gulp plugins, including gulp-sourcemaps, don't support streams.
+    .pipe(buffer())
+    // tell gulp-sourcemaps to load the inline sourcemap produced by rollup-stream.
+    .pipe($.sourcemaps.init({ loadMaps: true }))
+    // transform the code further here.
+    // if you want to output with a different name from the input file, use gulp-rename here.
+    .pipe($.rename('app.js'))
+    // write the sourcemap alongside the output file.
+    .pipe($.sourcemaps.write('.'))
+    // and output to ./dist/main.js as normal.
     .pipe(gulp.dest('.tmp/scripts'))
-    .pipe(reload({stream: true}));
+    .pipe(reload({ stream: true }));
 });
 
 function lint(files) {
   return gulp.src(files)
     .pipe($.eslint({ fix: true }))
-    .pipe(reload({stream: true, once: true}))
+    .pipe(reload({ stream: true, once: true }))
     .pipe($.eslint.format())
     .pipe($.if(!browserSync.active, $.eslint.failAfterError()));
 }
@@ -55,13 +83,13 @@ gulp.task('lint:test', () => {
 
 gulp.task('html', ['styles', 'scripts'], () => {
   return gulp.src('app/*.html')
-    .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
-    .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: true}})))
-    .pipe($.if(/\.css$/, $.cssnano({safe: true, autoprefixer: false})))
+    .pipe($.useref({ searchPath: ['.tmp', 'app', '.'] }))
+    .pipe($.if(/\.js$/, $.uglify({ compress: { drop_console: true } })))
+    .pipe($.if(/\.css$/, $.cssnano({ safe: true, autoprefixer: false })))
     .pipe($.if(/\.html$/, $.htmlmin({
       collapseWhitespace: true,
       minifyCSS: true,
-      minifyJS: {compress: {drop_console: true}},
+      minifyJS: { compress: { drop_console: true } },
       processConditionalComments: true,
       removeComments: true,
       removeEmptyAttributes: true,
@@ -78,8 +106,8 @@ gulp.task('images', () => {
 });
 
 gulp.task('fonts', () => {
-  return gulp.src(require('main-bower-files')('**/*.{eot,svg,ttf,woff,woff2}', function (err) {})
-    .concat('app/fonts/**/*'))
+  return gulp.src(require('main-bower-files')('**/*.{eot,svg,ttf,woff,woff2}', function(err) {})
+      .concat('app/fonts/**/*'))
     .pipe($.if(dev, gulp.dest('.tmp/fonts'), gulp.dest('dist/fonts')));
 });
 
@@ -167,7 +195,7 @@ gulp.task('wiredep', () => {
 });
 
 gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
-  return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
+  return gulp.src('dist/**/*').pipe($.size({ title: 'build', gzip: true }));
 });
 
 gulp.task('default', () => {
