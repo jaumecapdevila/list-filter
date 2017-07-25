@@ -8,7 +8,7 @@ const Application = function(manager) {
   this.init = function() {
     const filterButton = document.getElementById('filter-button');
     const clearButton = document.getElementById('clear-button');
-    filterButton.addEventListener('click', (event) => {
+    filterButton.addEventListener('click', () => {
       try {
         const firstListValue = this.manager.firstList();
         const secondListValue = this.manager.secondList();
@@ -20,19 +20,16 @@ const Application = function(manager) {
         }
         const filterResponse = Filter.filter(
           ArraySerializer.deserialize(firstListValue),
-          ArraySerializer.deserialize(secondListValue),
+          ArraySerializer.deserialize(secondListValue)
         );
         this.manager.setFilteredList(ArraySerializer.serialize(filterResponse.filteredList));
         this.manager.setItemsRemovedList(ArraySerializer.serialize(filterResponse.repeatedItems));
       } catch (exception) {
-        console.log(exception);
         console.log(exception.getMessage());
       }
     });
-    clearButton.addEventListener('click', (event) => {
-      this.manager.setFirstList('');
-      this.manager.setSecondList('');
-      this.manager.hideLists();
+    clearButton.addEventListener('click', () => {
+      this.manager.clearLists();
     });
   }
 }

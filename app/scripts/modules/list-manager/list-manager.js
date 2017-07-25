@@ -1,7 +1,7 @@
-const ListManager = function(firstListObject, secondListObject) {
+const ListManager = function() {
   this.firstList = function() {
     const firstList = document.getElementById('first-list');
-    return firstList.value
+    return firstList.value;
   }
   this.setFirstList = function(value) {
     const firstList = document.getElementById('first-list');
@@ -9,7 +9,7 @@ const ListManager = function(firstListObject, secondListObject) {
   }
   this.secondList = function() {
     const secondList = document.getElementById('second-list');
-    return secondList.value
+    return secondList.value;
   }
   this.setSecondList = function(value) {
     const secondList = document.getElementById('second-list');
@@ -27,14 +27,18 @@ const ListManager = function(firstListObject, secondListObject) {
     itemsRemovedList.value = value;
     itemsRemovedListContainer.style.display = 'block';
   }
-  this.hideLists = function(value) {
+  this.clearLists = function() {
+    const firstList = document.getElementById('first-list');
+    const secondList = document.getElementById('second-list');
     const filteredList = document.getElementById('filtered-list');
     const filteredListContainer = document.getElementById('filtered-list-container');
     const itemsRemovedList = document.getElementById('items-removed-list');
     const itemsRemovedListContainer = document.getElementById('items-removed-list-container');
+    firstList.value = '';
+    secondList.value = '';
     itemsRemovedList.value = '';
-    itemsRemovedListContainer.style.display = 'none';
     filteredList.value = '';
+    itemsRemovedListContainer.style.display = 'none';
     filteredListContainer.style.display = 'none';
   }
 }
