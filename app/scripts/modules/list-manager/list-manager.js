@@ -23,9 +23,7 @@ const ListManager = function() {
       duplicatesFirstList.value = ArraySerializer.serialize(filterResponse.duplicatesFromFirstList);
       duplicatesSecondList.value = ArraySerializer.serialize(filterResponse.duplicatesFromSecondList);
       duplicatesMergeList.value = ArraySerializer.serialize(filterResponse.duplicatesFromMergeList);
-    } catch (exception) {
-      console.log(exception);
-    }
+    } catch (exception) {}
   }
   this.clearLists = function() {
     const firstList = document.getElementById('first-list');

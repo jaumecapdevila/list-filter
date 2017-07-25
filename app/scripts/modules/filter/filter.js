@@ -13,7 +13,6 @@ Filter.filter = function(firstList, secondList) {
 
   if (firstList.length > 1) {
     const sortedFirstList = firstList.sort();
-    console.log(sortedFirstList);
     for (let i = 0; i < sortedFirstList.length; i++) {
       if (sortedFirstList[i] === sortedFirstList[i + 1]) {
         duplicatesFromFirstList.push(sortedFirstList[i]);
