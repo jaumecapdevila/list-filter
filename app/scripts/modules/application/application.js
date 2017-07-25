@@ -22,11 +22,8 @@ const Application = function(manager) {
           ArraySerializer.deserialize(firstListValue),
           ArraySerializer.deserialize(secondListValue)
         );
-        this.manager.setFilteredList(ArraySerializer.serialize(filterResponse.filteredList));
-        this.manager.setItemsRemovedList(ArraySerializer.serialize(filterResponse.repeatedItems));
-      } catch (exception) {
-        console.log(exception.getMessage());
-      }
+        this.manager.displayLists(filterResponse);
+      } catch (exception) {}
     });
     clearButton.addEventListener('click', () => {
       this.manager.clearLists();

@@ -1,45 +1,49 @@
+import ArraySerializer from '../serializer/serializer';
+
 const ListManager = function() {
   this.firstList = function() {
     const firstList = document.getElementById('first-list');
     return firstList.value;
   }
-  this.setFirstList = function(value) {
-    const firstList = document.getElementById('first-list');
-    firstList.value = value;
-  }
   this.secondList = function() {
     const secondList = document.getElementById('second-list');
     return secondList.value;
   }
-  this.setSecondList = function(value) {
-    const secondList = document.getElementById('second-list');
-    secondList.value = value;
-  }
-  this.setFilteredList = function(value) {
+  this.displayLists = function(filterResponse) {
     const filteredList = document.getElementById('filtered-list');
+    const duplicatesFirstList = document.getElementById('duplicates-first-list');
+    const duplicatesSecondList = document.getElementById('duplicates-second-list');
+    const duplicatesMergeList = document.getElementById('duplicates-merge-list');
     const filteredListContainer = document.getElementById('filtered-list-container');
-    filteredList.value = value;
+    const duplicatesListContainer = document.getElementById('duplicates-list-container');
     filteredListContainer.style.display = 'block';
-  }
-  this.setItemsRemovedList = function(value) {
-    const itemsRemovedList = document.getElementById('items-removed-list');
-    const itemsRemovedListContainer = document.getElementById('items-removed-list-container');
-    itemsRemovedList.value = value;
-    itemsRemovedListContainer.style.display = 'block';
+    duplicatesListContainer.style.display = 'block';
+    try {
+      filteredList.value = ArraySerializer.serialize(filterResponse.filteredList);
+      duplicatesFirstList.value = ArraySerializer.serialize(filterResponse.duplicatesFromFirstList);
+      duplicatesSecondList.value = ArraySerializer.serialize(filterResponse.duplicatesFromSecondList);
+      duplicatesMergeList.value = ArraySerializer.serialize(filterResponse.duplicatesFromMergeList);
+    } catch (exception) {
+      console.log(exception);
+    }
   }
   this.clearLists = function() {
     const firstList = document.getElementById('first-list');
     const secondList = document.getElementById('second-list');
     const filteredList = document.getElementById('filtered-list');
+    const duplicatesFirstList = document.getElementById('duplicates-first-list');
+    const duplicatesSecondList = document.getElementById('duplicates-second-list');
+    const duplicatesMergeList = document.getElementById('duplicates-merge-list');
     const filteredListContainer = document.getElementById('filtered-list-container');
-    const itemsRemovedList = document.getElementById('items-removed-list');
-    const itemsRemovedListContainer = document.getElementById('items-removed-list-container');
+    const duplicatesListContainer = document.getElementById('duplicates-list-container');
     firstList.value = '';
     secondList.value = '';
-    itemsRemovedList.value = '';
     filteredList.value = '';
-    itemsRemovedListContainer.style.display = 'none';
+    duplicatesFirstList.value = '';
+    duplicatesSecondList.value = '';
+    duplicatesMergeList.value = '';
     filteredListContainer.style.display = 'none';
+    duplicatesListContainer.style.display = 'none';
   }
 }
 
