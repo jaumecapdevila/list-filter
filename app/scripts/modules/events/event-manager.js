@@ -1,7 +1,7 @@
 import Validator from '../validator/validator';
-import InvalidArrayException from '../exceptions/invalid-array-exception';
-import InvalidCallbackException from '../exceptions/invalid-callback-exception';
-import InvalidTargetException from '../exceptions/invalid-target-exception';
+import InvalidArrayException from '../validator/exceptions/invalid-array-exception';
+import InvalidCallbackException from '../validator/exceptions/invalid-callback-exception';
+import InvalidTargetException from '../validator/exceptions/invalid-target-exception';
 
 const EventManager = function() {
   this.addListenersToElement = function(target, events, callback, args) {

@@ -1,6 +1,6 @@
-import ArraySerializer from '../serializer/serializer';
-import Filter from '../filter/filter';
-import Validator from '../validator/validator';
+import ArraySerializer from '../../serializer/serializer';
+import Filter from '../../filter/filter';
+import Validator from '../../validator/validator';
 
 const ListManager = function() {
   const firstList = document.getElementById('first-list');
@@ -48,7 +48,7 @@ const ListManager = function() {
       duplicatesMergeList.value = ArraySerializer.serialize(filterResponse.getDuplicatesFromMergedList());
       this.displayLists();
     } catch (exception) {
-      console.log(exception);
+      console.log(exception.getMessage());
     }
   }
   this.displayLists = function() {
@@ -62,6 +62,7 @@ const ListManager = function() {
     duplicatesFirstList.value = '';
     duplicatesSecondList.value = '';
     duplicatesMergeList.value = '';
+    this.hideLists();
   };
   this.hideLists = function() {
     filteredListContainer.style.display = 'none';

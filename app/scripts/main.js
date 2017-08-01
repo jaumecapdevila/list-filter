@@ -1,4 +1,4 @@
-import ListManager from './modules/list-manager/list-manager';
+import ListManager from './modules/list/manager/list-manager';
 import EventManager from './modules/events/event-manager';
 
 const listManager = new ListManager();
