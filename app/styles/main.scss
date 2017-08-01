@@ -11,9 +11,6 @@ body {
 
 
 
-
-
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
 .header,
@@ -25,18 +22,12 @@ body {
 
 
 
-
-
-
 /* Custom page header */
 
 .header {
   padding-bottom: 1rem;
   border-bottom: .05rem solid #e5e5e5;
 }
-
-
-
 
 
 
@@ -56,6 +47,14 @@ body {
   display: none;
 }
 
+.invalid-list {
+  border-color: red !important;
+}
+
+.error-message {
+  color: red;
+  display: none;
+}
 
 
 
@@ -68,9 +67,6 @@ body {
   color: #777;
   border-top: .05rem solid #e5e5e5;
 }
-
-
-
 
 
 

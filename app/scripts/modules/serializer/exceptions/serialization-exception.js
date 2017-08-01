@@ -1,12 +1,12 @@
-const SerializationException = function(message) {
+const SerializationException = function (message) {
   this.name = 'serialization.exception';
   this.message = message;
-  this.getName = function() {
+  this.getName = function () {
     return this.name;
-  }
-  this.getMessage = function() {
+  };
+  this.getMessage = function () {
     return this.message;
-  }
-}
+  };
+};
 
 export default SerializationException;
