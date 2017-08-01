@@ -9,11 +9,6 @@ body {
   padding-bottom: 1.5rem;
 }
 
-
-
-
-
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 
 .header,
@@ -23,22 +18,12 @@ body {
   padding-left: 1rem;
 }
 
-
-
-
-
-
 /* Custom page header */
 
 .header {
   padding-bottom: 1rem;
   border-bottom: .05rem solid #e5e5e5;
 }
-
-
-
-
-
 
 /* Make the masthead heading the same height as the navigation */
 
@@ -56,8 +41,14 @@ body {
   display: none;
 }
 
+.invalid-list {
+  border-color: red;
+}
 
-
+.error-message {
+  color: red;
+  display: none;
+}
 
 /* Custom page footer */
 
@@ -69,11 +60,6 @@ body {
   border-top: .05rem solid #e5e5e5;
 }
 
-
-
-
-
-
 /* Customize container */
 
 @media (min-width: 48em) {
@@ -82,7 +68,7 @@ body {
   }
 }
 
-.container-narrow>hr {
+.container-narrow > hr {
   margin: 2rem 0;
 }
 

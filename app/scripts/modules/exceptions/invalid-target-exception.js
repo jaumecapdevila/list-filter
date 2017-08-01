@@ -1,5 +1,5 @@
-const SerializationException = function (message) {
-  this.name = 'serialization.exception';
+const InvalidTargetException = function (message) {
+  this.name = 'invalid.target.exception';
   this.message = message;
   this.getName = function () {
     return this.name;
@@ -9,4 +9,4 @@ const SerializationException = function (message) {
   };
 };
 
-export default SerializationException;
+export default InvalidTargetException;

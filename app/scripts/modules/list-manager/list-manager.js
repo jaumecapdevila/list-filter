@@ -1,15 +1,26 @@
 import ArraySerializer from '../serializer/serializer';
 
-const ListManager = function() {
-  this.firstList = function() {
-    const firstList = document.getElementById('first-list');
-    return firstList.value;
-  }
-  this.secondList = function() {
-    const secondList = document.getElementById('second-list');
-    return secondList.value;
-  }
-  this.displayLists = function(filterResponse) {
+const ListManager = function () {
+  this.firstList = document.getElementById('first-list');
+  this.secondList = document.getElementById('second-list');
+  this.listErrorMessage = document.getElementById('list-error-mesage');
+  this.invalidFirstListValue = function () {
+    this.firstList.classList.add('invalid-list');
+    this.listErrorMessage.style.display = 'block';
+  };
+  this.invalidSecondListValue = function () {
+    this.secondList.classList.add('invalid-list');
+    this.listErrorMessage.style.display = 'block';
+  };
+  this.validFirstListValue = function () {
+    this.firstList.classList.remove('invalid-list');
+    this.listErrorMessage.style.display = 'none';
+  };
+  this.validSecondListValue = function () {
+    this.secondList.classList.remove('invalid-list');
+    this.listErrorMessage.style.display = 'none';
+  };
+  this.displayLists = function (filterResponse) {
     const filteredList = document.getElementById('filtered-list');
     const duplicatesFirstList = document.getElementById('duplicates-first-list');
     const duplicatesSecondList = document.getElementById('duplicates-second-list');
@@ -24,8 +35,8 @@ const ListManager = function() {
       duplicatesSecondList.value = ArraySerializer.serialize(filterResponse.duplicatesFromSecondList);
       duplicatesMergeList.value = ArraySerializer.serialize(filterResponse.duplicatesFromMergeList);
     } catch (exception) {}
-  }
-  this.clearLists = function() {
+  };
+  this.clearLists = function () {
     const firstList = document.getElementById('first-list');
     const secondList = document.getElementById('second-list');
     const filteredList = document.getElementById('filtered-list');
@@ -42,7 +53,7 @@ const ListManager = function() {
     duplicatesMergeList.value = '';
     filteredListContainer.style.display = 'none';
     duplicatesListContainer.style.display = 'none';
-  }
-}
+  };
+};
 
 export default ListManager;
