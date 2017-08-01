@@ -5,7 +5,7 @@ Validator.assertNotEmpty = function(value) {
 };
 
 Validator.assertArray = function(value) {
-  return Array !== value.constructor;
+  return Array === value.constructor;
 };
 
 Validator.assertFunction = function(value) {
