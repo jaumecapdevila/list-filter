@@ -1,14 +1,13 @@
-const Validator = function () {};
-Validator.assertNotEmpty = function (value) {
-  const list = value.split('\n');
-  return value !== '' && list.length > 1;
+const Validator = function() {};
+Validator.assertNotEmpty = function(value) {
+  return value !== '';
 };
 
-Validator.assertArray = function (value) {
+Validator.assertArray = function(value) {
   return Array.isArray(value);
 };
 
-Validator.assertFunction = function (value) {
+Validator.assertFunction = function(value) {
   return typeof value === 'function';
 };
 

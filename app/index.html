@@ -2,79 +2,76 @@
 <html lang="">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>list filter</title>
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>list filter</title>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Place favicon.ico in the root directory -->
+  <!-- build:css styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
 </head>
 
 <body>
-<!--[if IE]>
+  <!--[if IE]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-<div class="container">
+  <div class="container">
     <div class="header">
-        <h3 class="text-muted">list filter</h3>
+      <h3 class="text-muted">list filter</h3>
     </div>
     <div class="row lists">
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="first-list">First list:</label>
-                <textarea class="form-control" rows="20" id="first-list"
-                          placeholder="List of items separated by a line break..."></textarea>
-            </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label for="first-list">First list:</label>
+          <textarea class="form-control" rows="20" id="first-list" placeholder="List of items separated by a line break..."></textarea>
         </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                <label for="second-list">Second list:</label>
-                <textarea class="form-control" rows="20" id="second-list"
-                          placeholder="List of items separated by a line break..."></textarea>
-            </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="form-group">
+          <label for="second-list">Second list:</label>
+          <textarea class="form-control" rows="20" id="second-list" placeholder="List of items separated by a line break..."></textarea>
         </div>
-        <div class="col-lg-6" id="filtered-list-container">
-            <div class="form-group">
-                <label for="filtered-list">Filtered list:</label>
-                <textarea class="form-control" rows="20" id="filtered-list"></textarea>
-            </div>
+      </div>
+      <div class="col-lg-6" id="filtered-list-container">
+        <div class="form-group">
+          <label for="filtered-list">Filtered list:</label>
+          <textarea class="form-control" rows="20" id="filtered-list"></textarea>
         </div>
-        <div class="col-lg-6" id="duplicates-list-container">
-            <div class="form-group">
-                <label for="duplicates-first-list">Duplicates from first list:</label>
-                <textarea class="form-control" rows="5" id="duplicates-first-list"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="duplicates-second-list">Duplicates from second list:</label>
-                <textarea class="form-control" rows="5" id="duplicates-second-list"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="duplicates-merge-list">Duplicates from merge:</label>
-                <textarea class="form-control" rows="5" id="duplicates-merge-list"></textarea>
-            </div>
+      </div>
+      <div class="col-lg-6" id="duplicates-list-container">
+        <div class="form-group">
+          <label for="duplicates-first-list">Duplicates from first list:</label>
+          <textarea class="form-control" rows="5" id="duplicates-first-list"></textarea>
         </div>
-        <div class="col-lg-12">
-            <p id="list-error-mesage" class="error-message">The lists must contain at least two elements separated by a line
-                break</p>
-            <button id="filter-button" type="button" class="btn btn-success">Filter list</button>
-            <button id="clear-button" type="button" class="btn btn-danger">Clear</button>
+        <div class="form-group">
+          <label for="duplicates-second-list">Duplicates from second list:</label>
+          <textarea class="form-control" rows="5" id="duplicates-second-list"></textarea>
         </div>
+        <div class="form-group">
+          <label for="duplicates-merge-list">Duplicates from merge:</label>
+          <textarea class="form-control" rows="5" id="duplicates-merge-list"></textarea>
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <p id="list-error-mesage" class="error-message">Both lists must contain at least one item</p>
+        <button id="filter-button" type="button" class="btn btn-success">Filter list</button>
+        <button id="clear-button" type="button" class="btn btn-danger">Clear</button>
+      </div>
     </div>
     <div class="footer">
-        <p>♥ from Jaume</p>
+      <p>♥ from Jaume</p>
     </div>
-</div>
-<!-- build:js scripts/main.js -->
-<script src="scripts/app.js"></script>
-<!-- endbuild -->
+  </div>
+  <!-- build:js scripts/main.js -->
+  <script src="scripts/app.js"></script>
+  <!-- endbuild -->
 </body>
 
 </html>
